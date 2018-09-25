@@ -1,0 +1,56 @@
+﻿@model CantinaDoTioWell.Controllers.ClienteController
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    @*<script src="JavaScript1.js"></script>*@
+    <title>FormCadCliente</title>
+</head>
+<body>
+    @using (Html.BeginForm("InserirCliente", "Cliente"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Cadastro de Cliente</h4>
+            <hr />
+
+            <p class="nome">
+                <input type="text" id="nomeid" placeholder="Tiago Vale" required="required" name="nome" />
+                <label for="nome">Nome</label>
+            </p>
+
+            <p class="fone">
+                <input type="text" id="foneid" placeholder="(xx)xx-xx-xx-xx" name="telefone" />
+                <label for="fone">Fone</label>
+            </p>
+            <p>
+                <input type="email" id="emailid" placeholder="fulano@mail.com" name="email" />
+                <label for="email">Email</label>
+            </p>
+
+
+            <p class="submit">
+                <input type="submit" value="Gravar Cliente" class="btn btn-default" />
+            </p>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Voltar", "Index", "Home")
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <header>
+
+        <div>
+            <h3>
+                @Html.ActionLink("Cadastrar Cliente", "Index", "Cliente")
+            </h3>
+        
+            @*<h4>Cadastro de Clientes</h4> <a href="http://localhost:51979/Cliente">Clique Aqui para cadastrar Clientes</a>*@
+            @*<a href="/Cliente">Cadastrar Cliente</a> <br />*@
+        
+            <h3>
+                @Html.ActionLink("Cadastrar Produto", "Index", "Produto")
+            </h3>
+        
+
+            @*<h4>Cadastro de Produtos</h4> <a href="http://localhost:51979/Produto">Clique Aqui para Cadastrar Produtos</a>*@
+          
+            <h3>
+                @Html.ActionLink("Realizar Pedido", "Index", "Pedido")
+            </h3>
+        </div>
+    </header>
+    
+
+        @*<h4>Realizar Pedido</h4> <a href="http://localhost:51979/Pedido">Clique Aqui para Cadastrar Um pedido</a> NAO USAR ESSA BOSTA *@
+
+
+    
+</body>
+</html>

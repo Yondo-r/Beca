@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CantinaDoTioWell.Models.Pedido>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Relatório</title>
+</head>
+<body>
+    <h4>Relatório de Dívidas</h4>
+    @using (Html.BeginForm("Pagar", "Pedido"))
+    {
+
+        <div>
+            <table class="table">
+                <tr>
+                    <th>
+                        Nome Do Cliente
+                    </th>
+                    <th>
+                        Nome do Produto
+                    </th>
+                    <th>
+                        Quantidade
+                    </th>
+                    <th>
+                        preço
+                    </th>
+                    <th>
+                        Data da Compra
+                    </th>
+                    <th></th>
+                </tr>
+                @*@ViewBag.total = 0*@
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <center>@item.cliente.Nome </center>
+                        </td>
+                        <td>
+                            <center>@item.Produto.Nome </center>
+                        </td>
+                        <td>
+                            <center>@item.Quantidade </center>
+                        </td>
+                        <td>
+                            <center>@item.Produto.Preco </center>
+                        </td>
+
+                        <td>
+                            <center>@item.DataCompra </center>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Pagar", "Pagar", "Pedido", new { IdPedido = item.IdPedido }, null)
+                        </td>
+                    </tr>
+                    
+                }
+
+                @{
+                    decimal totalSoma = 0;
+                    decimal totalQuantidade = 0;
+                    decimal soma = 0;
+                    foreach (var item in ViewBag.ListaPedidos)
+                    {
+                        totalSoma += item.Produto.Preco;
+                        totalQuantidade += item.Quantidade;
+                    }
+                    soma = totalSoma * totalQuantidade;
+                }
+            </table> <br />
+            <strong>
+                @Html.Label("Total da dívida: ") @soma
+            </strong>
+        </div>
+        @Html.ActionLink("Back to List", "Index")
+    }
+</body>
+</html>

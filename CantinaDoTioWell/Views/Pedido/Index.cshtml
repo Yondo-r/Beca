@@ -1,0 +1,65 @@
+﻿@*@model IEnumerable<CantinaDoTioWell.Models.Produtos>*@ 
+@model CantinaDoTioWell.Models.Pedido
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    @*<script src="JavaScript1.js"></script>*@
+    <title>Formulário para realizar pedidos</title>
+</head>
+<body>
+    @using (Html.BeginForm("InserirPedido", "Pedido"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Formulário para realizar pedidos </h4>
+            <hr />
+
+            <p class="nome">
+                @Html.EditorFor(m => m.cliente.Nome, new {HtmlAttribute = new {placeholder = "Nome do Cliente", required="" } })
+                @*<input type="search" id="NomeClienteId" placeholder="Nome do Cliente" required="required" name="nomecliente" />*@
+                <label for="nomecliente">Nome</label>
+            </p>
+
+            <p class="Produtos">
+                @* cria um select list em html onde a escrita vai ser o nome do produto e você tá passando uma lista pra ele  *@
+                @Html.DropDownListFor(m => m.Produto.Id, (IEnumerable<SelectListItem>)ViewBag.Lista) Produto
+            </p>
+            <p>
+                @Html.EditorFor(m => m.Quantidade, new { HtmlAttribute = new {placeholder = "Quantidade", required="" }})
+                @*<input type="number" id="quantidaedid" placeholder="0" name="quantidade" />*@
+                <label for="quantidade">Quantidade</label>
+            </p>
+
+
+
+
+            <p class="submit">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </p>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Voltar", "Index", "Home")<br />
+        @Html.ActionLink("Relatorio de pedidos", "Relatorio")
+    </div>
+</body>
+</html>
+
+
